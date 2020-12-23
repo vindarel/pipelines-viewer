@@ -16,3 +16,7 @@ OK  2020-12-23T17:57:24.995Z
 skipped  2020-12-22T14:59:15.645Z
 OK  2020-12-08T18:18:36.785Z
 ```
+
+See also:
+
+- https://github.com/nbedos/cistern, but discontinued.
