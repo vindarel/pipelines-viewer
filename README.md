@@ -19,4 +19,5 @@ OK  2020-12-08T18:18:36.785Z
 
 See also:
 
-- https://github.com/nbedos/cistern, but discontinued.
+- https://github.com/profclems/glab
+- https://github.com/nbedos/cistern (discontinued).
