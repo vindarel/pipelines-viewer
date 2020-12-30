@@ -20,7 +20,9 @@
                )
   :components ((:module "src/"
                 :components
-                ((:file "pipelines-viewer"))))
+                ((:file "packages")
+                 (:file "utils")
+                 (:file "pipelines-viewer"))))
 
   :build-operation "program-op"
   :build-pathname "pipelines-viewer"

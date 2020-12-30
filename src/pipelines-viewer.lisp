@@ -1,7 +1,4 @@
 
-(defpackage pipelines-viewer
-  (:use :cl))
-
 (in-package :pipelines-viewer)
 
 (defparameter +gitlab-server+ "https://gitlab.com")
@@ -47,19 +44,18 @@
 #+(or nil)
 (get-pipelines "vindarel%2Fabelujo")
 
-(defun get-project-remote-url ()
-  (let ((config (str:from-file ".git/config")))
-    (cond
-      ;; also doable with a call to git remotes -v
-      ((not (str:containsp "[remote" config))
-       (format nil "Does this repository has a remote?"))
-      (t
-       (error "todo :)")))))
-
 (defun main ()
-  (unless (uiop:command-line-arguments)
-    (format *error-output* "Usage: pipelines-viewer username project")
-    (uiop:quit 1))
-  (let* ((args (uiop:command-line-arguments))
-         (project-id (format nil "~a%2F~a" (first args) (second args))))
+  "Optional arguments: username project. Otherwise, extract them from the first .git/config remote URL."
+  (let* (project-id
+         args)
+    (cond
+      ;; We have CLI args.
+      ((setf args (uiop:command-line-arguments))
+       (setf project-id (format nil "~a%2F~a" (first args) (second args))))
+      ;; Read the .git/config, consider the first remote URL.
+      (t
+       (let* ((remote-url (first-remote-url))
+              (user/project (get-user/project remote-url)))
+         (setf project-id (format nil "~a%2F~a" (first user/project) (second user/project))))))
+
     (show-last-pipelines (get-pipelines project-id))))
