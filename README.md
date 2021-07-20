@@ -3,6 +3,8 @@ View the last Gitlab pipelines and their status.
 
 Really not much here! Except it does the job \o/
 
+# Usage
+
 ```
 $ pipelines-viewer
 OK  2020-12-23T21:44:14.261Z
@@ -30,8 +32,19 @@ If your latest pipeline failed, we print its web URL:
 
     See your failing pipeline here: https://gitlab.com/you/project/-/pipelines/339508592
 
+# Install
 
-See also:
+With Roswell (experimental, thanks for a feedback if it works for you):
+
+    $ ros install vindarel/pipelines-viewer
+
+Download a binary (TODO).
+
+Clone and build:
+
+    $ make build
+
+# See also
 
 - https://github.com/profclems/glab
 - https://github.com/nbedos/cistern (discontinued).

@@ -50,13 +50,12 @@
 #+(or nil)
 (show-last-pipelines (get-pipelines "vindarel%2Fabelujo"))
 
-(defun main ()
+(defun run (args)
   "Optional arguments: username project. Otherwise, extract them from the first .git/config remote URL."
-  (let* (project-id
-         args)
+  (let* (project-id)
     (cond
       ;; We have CLI args.
-      ((setf args (uiop:command-line-arguments))
+      (args
        (setf project-id (format nil "~a%2F~a" (first args) (second args))))
       ;; Read the .git/config, consider the first remote URL.
       (t
@@ -65,3 +64,6 @@
          (setf project-id (format nil "~a%2F~a" (first user/project) (second user/project))))))
 
     (show-last-pipelines (get-pipelines project-id))))
+
+(defun main ()
+  (run (uiop:command-line-arguments)))
