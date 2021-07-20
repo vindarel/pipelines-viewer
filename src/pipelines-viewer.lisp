@@ -27,6 +27,7 @@
 
 (defun show-last-pipelines (data)
   (loop for item in (str:substring 0 10 data)
+     with the-most-recent-pipeline-failed = (is-error (first data))
      do (cond
           ((is-success item)
            (format t "~a~t ~a~&"
@@ -39,10 +40,15 @@
           (t
            (format t "~a~t ~a~&"
                    (access:access item :|status|)
-                   (access:access item :|updated_at|))))))
+                   (access:access item :|updated_at|))))
+     finally
+       (when the-most-recent-pipeline-failed
+         (format t "~%See your failing pipeline here: ~a~&" (access:access (first data) :|web_url|)))))
 
 #+(or nil)
 (get-pipelines "vindarel%2Fabelujo")
+#+(or nil)
+(show-last-pipelines (get-pipelines "vindarel%2Fabelujo"))
 
 (defun main ()
   "Optional arguments: username project. Otherwise, extract them from the first .git/config remote URL."

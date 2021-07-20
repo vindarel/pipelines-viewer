@@ -26,6 +26,11 @@ Optional: accepts the username and project as arguments:
 
      $ pipelines-viewer vindarel abelujo
 
+If your latest pipeline failed, we print its web URL:
+
+    See your failing pipeline here: https://gitlab.com/you/project/-/pipelines/339508592
+
+
 See also:
 
 - https://github.com/profclems/glab
