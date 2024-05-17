@@ -34,15 +34,23 @@ If your latest pipeline failed, we print its web URL:
 
 # Install
 
+NEW!
+
+You can use our `civiewer.lisp` script with [CIEL](https://github.com/ciel-lang/CIEL/). Install CIEL and run the script:
+
+    $ ./civiewer.lisp
+
+see https://github.com/ciel-lang/CIEL/discussions/49
+
 With Roswell (experimental, thanks for a feedback if it works for you):
 
     $ ros install vindarel/pipelines-viewer
 
 Download a binary (TODO).
 
-Clone and build:
+Otherwise, clone the sources and build it yourself:
 
-    $ make build
+    $ make build  # aka save-lisp-and-die somewhere.
 
 # See also
 
